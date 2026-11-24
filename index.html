@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WScan — Wireless Security Scanner. Passive Wi-Fi & Bluetooth Scanner par W-Tech 💻🌐.">
+  <meta name="theme-color" content="#ffffff">
+  <title>WScan — Wireless Security Scanner</title>
+    <link rel="icon" type="image/jpeg" href="images/esp32.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="navbar container" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="Accueil">
+        <span class="brand-mark">W</span><span>WScan<span class="brand-dot">.</span></span>
+      </a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#presentation">Présentation</a>
+        <a href="#materiel">Matériel</a>
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#realisation">Réalisation</a>
+        <a href="#installation">Installation</a>
+        <a href="#code">Code & Ressource</a>
+        <a class="nav-contact" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="accueil">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> W-Tech 💻🌐 · Passive Wi-Fi &amp; Bluetooth Scanner</span>
+          <h1>WScan — Wireless Security Scanner</h1>
+          <p class="hero-description">Un scanner passif Wi-Fi et Bluetooth Low Energy développé avec un ESP32-WROOM-32 et ESP-IDF.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#presentation">Découvrir le projet <span aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="#fonctionnalites">Voir les fonctionnalités</a>
+          </div>
+          <div class="hero-meta">
+            <span><i class="meta-icon">⌁</i> Développement en C</span>
+            <span><i class="meta-icon">◉</i> ESP-IDF v5.4.4</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-image-wrap">
+            <img src="images/esp32.jpeg" alt="Photographie de la carte ESP32-WROOM-32" class="hero-image" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="image-placeholder hero-placeholder">
+              <span class="placeholder-symbol">＋</span>
+              <strong>Ajouter une photo de l'ESP32</strong>
+              <small>images/esp32.jpeg</small>
+            </div>
+          </div>
+          <div class="image-caption"><span class="caption-dot"></span><div><strong>ESP32-WROOM-32</strong><small>Version 1 · Interface série</small></div></div>
+          <div class="visual-note">Matériel principal du projet</div>
+        </div>
+      </div>
+      <div class="hero-bottom container">
+        <span>EXPLORER LE PROJET</span><span class="scroll-line"></span><a href="#presentation" aria-label="Défiler vers la présentation">↓</a>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="presentation">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">01 — PRÉSENTATION</span>
+          <h2>Comprendre les réseaux <span>sans fil.</span></h2>
+          <p>Wireless Security Scanner est un projet d'apprentissage qui permet d'observer les réseaux Wi-Fi et les appareils Bluetooth Low Energy à proximité, à l'aide d'une carte ESP32.</p>
+        </div>
+        <div class="intro-grid">
+          <article class="intro-card reveal">
+            <div class="card-icon">◎</div><h3>Contexte</h3>
+            <p>Les réseaux sans fil et les appareils connectés font partie de notre environnement quotidien. Le projet propose un outil embarqué pour découvrir les informations diffusées par ces réseaux.</p>
+          </article>
+          <article class="intro-card reveal">
+            <div class="card-icon">⌖</div><h3>Objectifs</h3>
+            <p>Mettre en pratique la programmation en C, l'utilisation d'ESP-IDF et les mécanismes de découverte passive Wi-Fi et BLE sur un microcontrôleur.</p>
+          </article>
+          <article class="intro-card reveal">
+            <div class="card-icon">⌘</div><h3>Approche</h3>
+            <p>Collecter et afficher des informations techniques utiles depuis une interface série, sans tenter de se connecter aux réseaux détectés ni perturber leur fonctionnement.</p>
+          </article>
+        </div>
+        <div class="tech-strip reveal">
+          <span class="tech-label">ENVIRONNEMENT TECHNIQUE</span>
+          <div class="tech-tags"><span>C</span><span>ESP-IDF 5.4.4</span><span>FreeRTOS</span><span>Ubuntu</span><span>VS Code</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="materiel">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">02 — MATÉRIEL</span>
+          <h2>Les composants <span>du projet.</span></h2>
+          <p>Une configuration volontairement accessible, organisée autour de l'ESP32-WROOM-32.</p>
+        </div>
+        <div class="equipment-grid">
+          <article class="equipment-card reveal">
+            <div class="equipment-image"><img src="images/esp32.jpeg" alt="Carte ESP32-WROOM-32" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder"><span>＋</span><small>images/esp32.jpeg</small></div></div>
+            <div class="equipment-info"><span class="item-number">01</span><h3>ESP32-WROOM-32 Type-C</h3><p>Microcontrôleur utilisé pour les scans Wi-Fi et Bluetooth Low Energy.</p></div>
+          </article>
+          <article class="equipment-card reveal">
+            <div class="equipment-image"><img src="images/Cable-C.jpeg" alt="Câble USB Type-C" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder"><span>＋</span><small>images/Cable-C.jpeg</small></div></div>
+            <div class="equipment-info"><span class="item-number">02</span><h3>Câble USB Type-C</h3><p>Alimentation de la carte et communication avec l'ordinateur.</p></div>
+          </article>
+          <article class="equipment-card reveal">
+            <div class="equipment-image"><img src="images/ubuntu.jpg" alt="Ordinateur sous Ubuntu" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder"><span>＋</span><small>images/ubuntu.jpg</small></div></div>
+            <div class="equipment-info"><span class="item-number">03</span><h3>Ordinateur sous Ubuntu</h3><p>Machine de développement pour écrire, compiler et téléverser le programme.</p></div>
+          </article>
+          <article class="equipment-card reveal">
+            <div class="equipment-image software-visual"><div class="software-mark">IDF<span>·</span></div></div>
+            <div class="equipment-info"><span class="item-number">04</span><h3>ESP-IDF v5.4.4</h3><p>Framework Espressif utilisé pour développer le logiciel embarqué en C.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="fonctionnalites">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">03 — FONCTIONNALITÉS</span>
+          <h2>Observer et analyser <span>les signaux.</span></h2>
+          <p>Les fonctions de la première version sont accessibles depuis le moniteur série.</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card reveal"><span class="feature-icon">⌁</span><h3>Wi-Fi Scanner</h3><p>Détection des points d'accès et affichage du SSID, BSSID, canal, RSSI et type de sécurité.</p><span class="feature-label">RÉSEAUX WI-FI</span></article>
+          <article class="feature-card reveal"><span class="feature-icon">◉</span><h3>Bluetooth LE Scanner</h3><p>Découverte passive des annonces BLE avec nom annoncé, adresse et puissance du signal.</p><span class="feature-label">APPAREILS BLE</span></article>
+          <article class="feature-card reveal"><span class="feature-icon">▥</span><h3>Signal Analysis</h3><p>Classification indicative de la puissance du signal à partir de la valeur RSSI reçue.</p><span class="feature-label">MESURE RSSI</span></article>
+          <article class="feature-card reveal"><span class="feature-icon">▦</span><h3>Channel Analysis</h3><p>Estimation de la densité des points d'accès détectés sur les différents canaux Wi-Fi.</p><span class="feature-label">CANAUX WI-FI</span></article>
+          <article class="feature-card reveal"><span class="feature-icon">⌖</span><h3>Device Monitoring</h3><p>Suivi des appareils observés et synthèse des informations collectées pendant les scans.</p><span class="feature-label">OBSERVATION</span></article>
+          <article class="feature-card reveal"><span class="feature-icon">⌨</span><h3>Serial Interface</h3><p>Interface en ligne de commande pour lancer les scans et consulter les informations du système.</p><span class="feature-label">MONITEUR SÉRIE</span></article>
+        </div>
+        <p class="technical-note"><strong>Note technique :</strong> l'analyse des canaux estime la densité des réseaux détectés ; elle ne mesure pas directement les interférences radio physiques. La distance estimée à partir du RSSI reste indicative.</p>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">04 — ARCHITECTURE</span>
+          <h2>Une structure <span>modulaire.</span></h2>
+          <p>Le programme est organisé en modules afin de séparer l'interface utilisateur, la collecte des données et les fonctions de suivi.</p>
+        </div>
+        <div class="architecture-panel reveal">
+          <div class="architecture-root"><span class="root-icon">W</span><div><strong>Wireless Security Scanner</strong><small>Application principale · ESP-IDF / C</small></div></div>
+          <div class="architecture-connector"></div>
+          <div class="module-grid">
+            <div class="module-card module-main"><span class="module-type">POINT D'ENTRÉE</span><strong>main.c</strong><small>Initialisation et orchestration</small></div>
+            <div class="module-card"><span class="module-type">INTERFACE</span><strong>serial_interface</strong><small>Commandes et affichage série</small></div>
+            <div class="module-card"><span class="module-type">SCAN RADIO</span><strong>wifi_scanner</strong><small>Découverte des points d'accès</small></div>
+            <div class="module-card"><span class="module-type">SCAN RADIO</span><strong>bluetooth_scanner</strong><small>Découverte passive BLE</small></div>
+            <div class="module-card"><span class="module-type">SUIVI</span><strong>device_monitor</strong><small>Suivi des appareils détectés</small></div>
+            <div class="module-card"><span class="module-type">SUIVI</span><strong>connection_monitor</strong><small>Informations de connexion</small></div>
+            <div class="module-card"><span class="module-type">GESTION</span><strong>connection_manager</strong><small>Gestion des connexions</small></div>
+            <div class="module-card"><span class="module-type">UTILITAIRE</span><strong>logger</strong><small>Journalisation des événements</small></div>
+          </div>
+          <div class="architecture-footer"><span class="status-dot"></span> Modules C · Environnement ESP-IDF v5.4.4</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="realisation">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">05 — RÉALISATION</span>
+          <h2>Du développement <span>aux essais.</span></h2>
+          <p>Les principales étapes suivies pour construire et vérifier progressivement la première version.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal"><span class="timeline-number">01</span><div><h3>Préparation de l'environnement</h3><p>Installation d'ESP-IDF, configuration de l'environnement Ubuntu et préparation du projet dans VS Code.</p></div></article>
+          <article class="timeline-item reveal"><span class="timeline-number">02</span><div><h3>Configuration de l'ESP32</h3><p>Définition de la cible ESP32 et vérification de la communication série avec la carte.</p></div></article>
+          <article class="timeline-item reveal"><span class="timeline-number">03</span><div><h3>Développement du scanner Wi-Fi</h3><p>Collecte des informations diffusées par les points d'accès visibles.</p></div></article>
+          <article class="timeline-item reveal"><span class="timeline-number">04</span><div><h3>Développement du scanner BLE</h3><p>Mise en place de la découverte passive des annonces Bluetooth Low Energy.</p></div></article>
+          <article class="timeline-item reveal"><span class="timeline-number">05</span><div><h3>Création de l'interface série</h3><p>Organisation des commandes pour lancer les scans et afficher les informations.</p></div></article>
+          <article class="timeline-item reveal"><span class="timeline-number">06</span><div><h3>Tests et débogage</h3><p>Vérification des fonctions, correction des erreurs et ajustements du programme.</p></div></article>
+          <article class="timeline-item reveal"><span class="timeline-number">07</span><div><h3>Compilation et téléversement</h3><p>Compilation du firmware puis transfert vers la carte ESP32 pour les essais.</p></div></article>
+        </div>
+        <div class="gallery-heading reveal"><div><span class="section-kicker">GALERIE DU PROJET</span><h3>Quelques aperçus de la réalisation.</h3></div><span class="gallery-hint">Remplace les images par tes propres captures.</span></div>
+        <div class="gallery-grid">
+          <button class="gallery-item gallery-large reveal" data-full="images/realisation-1.jpeg" aria-label="Agrandir la photo du montage"><img src="images/realisation-1.jpeg" alt="Montage du projet" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-placeholder"><b>＋</b><small>images/realisation-1.jpeg</small></span><span class="gallery-overlay">Montage du projet ↗</span></button>
+          <button class="gallery-item reveal" data-full="images/serial-wifi.png" aria-label="Agrandir la capture Wi-Fi"><img src="images/serial-wifi.png" alt="Capture du scan Wi-Fi" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-placeholder"><b>＋</b><small>images/serial-wifi.png</small></span><span class="gallery-overlay">Scan Wi-Fi ↗</span></button>
+          <button class="gallery-item reveal" data-full="images/serial-ble.png" aria-label="Agrandir la capture BLE"><img src="images/serial-ble.png" alt="Capture de la découverte BLE" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="image-placeholder"><b>＋</b><small>images/serial-ble.png</small></span><span class="gallery-overlay">Découverte BLE ↗</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demonstration">
+      <div class="container demo-grid">
+        <div class="demo-copy reveal">
+          <span class="section-kicker">06 — DÉMONSTRATION</span>
+          <h2>Une utilisation depuis le <span>moniteur série.</span></h2>
+          <p>La version 1 ne possède pas d'écran intégré. Les commandes sont saisies depuis le moniteur série de l'environnement de développement.</p>
+          <div class="command-list">
+            <div><code>help</code><span>Afficher les commandes disponibles</span></div>
+            <div><code>wifi scan</code><span>Lancer un scan Wi-Fi</span></div>
+            <div><code>ble scan</code><span>Lancer une découverte BLE</span></div>
+            <div><code>status</code><span>Afficher l'état du système</span></div>
+            <div><code>devices</code><span>Consulter les appareils observés</span></div>
+          </div>
+        </div>
+        <div class="demo-image reveal">
+          <img src="images/monitor.png" alt="Capture réelle du moniteur série pendant une démonstration" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="image-placeholder"><span>＋</span><strong>Ajouter une capture du moniteur série</strong><small>images/monitor.png</small></div>
+          <span class="demo-image-caption">Exemple de capture à remplacer par un résultat réel</span>
+        </div>
+      </div>
+    </section>
+
+
+<section class="section section-soft" id="installation">
+      <div class="container">
+        <div class="section-heading reveal">
+            <span class="setup-label">7 - ENVIRONNEMENT DE DÉVELOPPEMENT</span>
+            <h2>Installation & <span>Configuration</span></h2>
+            <p>
+                Découvrez les étapes nécessaires pour installer les outils
+                de développement et lancer le projet sur ESP32-WROOM-32.
+            </p>
+        </div>
+
+        <!-- ETAPE 1 : IDE -->
+        <div class="setup-step">
+            <div class="setup-step-number">01</div>
+
+            <div class="setup-content">
+                <h3>Installation de l'IDE</h3>
+                <p>
+                    Visual Studio Code est utilisé comme environnement
+                    de développement pour écrire et organiser le code C.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Visual Studio Code</h4>
+
+                    <ol>
+                        <li>Télécharger Visual Studio Code.</li>
+                        <li>Installer le logiciel sur Ubuntu.</li>
+                        <li>Ouvrir Visual Studio Code.</li>
+                        <li>Accéder à l'onglet Extensions.</li>
+                        <li>Rechercher et installer l'extension <strong>ESP-IDF</strong> d'Espressif.</li>
+                    </ol>
+
+                    <a href="https://code.visualstudio.com/"
+                       target="_blank"
+                       class="setup-link">
+                        Télécharger VS Code ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPE 2 : ESP-IDF -->
+        <div class="setup-step">
+            <div class="setup-step-number">02</div>
+
+            <div class="setup-content">
+                <h3>Installation d'ESP-IDF</h3>
+                <p>
+                    ESP-IDF est le framework officiel d'Espressif permettant
+                    de développer et compiler des applications pour ESP32.
+                    Ce projet utilise la version 5.4.4.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Étape A — Installer les dépendances</h4>
+
+                    <p>Ouvrir un terminal Ubuntu et exécuter :</p>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Terminal Ubuntu</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>sudo apt update
+
+sudo apt install git wget flex bison gperf python3 python3-pip python3-venv cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0</code></pre>
+                    </div>
+
+                    <h4>Étape B — Télécharger ESP-IDF</h4>
+
+                    <p>
+                        Télécharger la version 5.4.4 depuis le dépôt officiel :
+                    </p>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Terminal Ubuntu</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>mkdir -p ~/esp
+
+cd ~/esp
+
+git clone -b v5.4.4 --recursive https://github.com/espressif/esp-idf.git</code></pre>
+                    </div>
+
+                    <h4>Étape C — Installer les outils ESP-IDF</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Terminal Ubuntu</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>cd ~/esp/esp-idf
+
+./install.sh esp32</code></pre>
+                    </div>
+
+                    <p class="setup-note">
+                        Cette installation prépare les compilateurs et les outils
+                        nécessaires au développement sur ESP32.
+                    </p>
+
+                    <a href="https://docs.espressif.com/projects/esp-idf/en/v5.4.4/esp32/get-started/"
+                       target="_blank"
+                       class="setup-link">
+                        Documentation officielle ESP-IDF ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPE 3 : ACTIVATION -->
+        <div class="setup-step">
+            <div class="setup-step-number">03</div>
+
+            <div class="setup-content">
+                <h3>Activation de l'environnement ESP-IDF</h3>
+                <p>
+                    Avant d'utiliser les commandes ESP-IDF, il faut activer
+                    son environnement dans le terminal.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Lancer ESP-IDF</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Terminal Ubuntu</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>source ~/esp/esp-idf/export.sh</code></pre>
+                    </div>
+
+                    <p>
+                        Une fois cette commande exécutée, les outils ESP-IDF
+                        sont accessibles depuis le terminal.
+                    </p>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Vérification</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>idf.py --version</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPE 4 : CONFIGURATION -->
+        <div class="setup-step">
+            <div class="setup-step-number">04</div>
+
+            <div class="setup-content">
+                <h3>Préparation du projet</h3>
+                <p>
+                    Ouvrir le dossier du projet dans le terminal et sélectionner
+                    la cible ESP32-WROOM-32.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Accéder au projet</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Terminal Ubuntu</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>cd ~/Documents/C/Wireless-Security-Scanner/Version1</code></pre>
+                    </div>
+
+                    <h4>Configurer la cible ESP32</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>ESP-IDF</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>idf.py set-target esp32</code></pre>
+                    </div>
+
+                    <p class="setup-note">
+                        La cible esp32 correspond à la famille ESP32 classique,
+                        utilisée par la carte ESP32-WROOM-32.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPE 5 : BUILD -->
+        <div class="setup-step">
+            <div class="setup-step-number">05</div>
+
+            <div class="setup-content">
+                <h3>Compilation du programme (Build)</h3>
+                <p>
+                    La compilation transforme les fichiers sources C en
+                    firmware compatible avec l'ESP32.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Compiler le projet</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>ESP-IDF</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>idf.py build</code></pre>
+                    </div>
+
+                    <p>
+                        Si la compilation réussit, les fichiers nécessaires
+                        au téléversement sont générés dans le dossier
+                        <strong>build/</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPE 6 : FLASH -->
+        <div class="setup-step">
+            <div class="setup-step-number">06</div>
+
+            <div class="setup-content">
+                <h3>Téléversement du firmware (Flash)</h3>
+                <p>
+                    Connecter la carte ESP32 au PC avec un câble USB Type-C,
+                    puis identifier son port série.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Identifier le port USB</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>Terminal Ubuntu</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>ls /dev/ttyUSB* /dev/ttyACM* 2>/dev/null</code></pre>
+                    </div>
+
+                    <p>
+                        Le port peut être par exemple
+                        <strong>/dev/ttyUSB0</strong> ou
+                        <strong>/dev/ttyACM0</strong>.
+                    </p>
+
+                    <h4>Envoyer le programme sur l'ESP32</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>ESP-IDF</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>idf.py -p /dev/ttyUSB0 flash</code></pre>
+                    </div>
+
+                    <p class="setup-note">
+                        Remplacer /dev/ttyUSB0 par le port réellement détecté
+                        sur votre ordinateur.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPE 7 : MONITOR -->
+        <div class="setup-step">
+            <div class="setup-step-number">07</div>
+
+            <div class="setup-content">
+                <h3>Surveillance série (Monitor)</h3>
+                <p>
+                    Le moniteur série permet d'afficher les messages envoyés
+                    par l'ESP32 et d'interagir avec le programme.
+                </p>
+
+                <div class="setup-card">
+                    <h4>Ouvrir le moniteur série</h4>
+
+                    <div class="setup-code">
+                        <div class="setup-code-header">
+                            <span>ESP-IDF</span>
+                            <button class="setup-copy">Copier</button>
+                        </div>
+                        <pre><code>idf.py -p /dev/ttyUSB0 monitor</code></pre>
+                    </div>
+
+                    <p>
+                        Pour quitter le moniteur série, utiliser :
+                        <strong>Ctrl + ]</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMMANDES RAPIDES -->
+        <div class="setup-summary">
+            <h3>Commandes rapides</h3>
+            <p>
+                Après avoir activé ESP-IDF et ouvert le dossier du projet,
+                les commandes principales sont :
+            </p>
+
+            <div class="setup-code">
+                <div class="setup-code-header">
+                    <span>Cycle de développement</span>
+                    <button class="setup-copy">Copier</button>
+                </div>
+                <pre><code># Compilation
+idf.py build
+
+# Téléversement
+idf.py -p /dev/ttyUSB0 flash
+
+# Moniteur série
+idf.py -p /dev/ttyUSB0 monitor
+
+# Téléversement puis ouverture du moniteur
+idf.py -p /dev/ttyUSB0 flash monitor</code></pre>
+            </div>
+
+            <div class="setup-warning">
+                <strong>Important :</strong>
+                Le port série peut être différent selon l'ordinateur.
+                Vérifier le port avant chaque téléversement.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+    <section class="section section-soft" id="code">
+      <div class="container">
+        <div class="section-heading reveal">
+      <span class="section-label">8 - DÉVELOPPEMENT</span>
+      <h2>Code & <span>Ressources</span></h2>
+      <p>
+        Retrouvez les fichiers sources du projet W-Tech Wireless Security Scanner,
+        développé en C avec ESP-IDF.
+      </p>
+    </div>
+
+    <div class="code-list">
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>main.c</h3>
+            <p>Point d'entrée principal du programme</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>main.c</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>#include <stdio.h>
+#include <string.h>
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+#include "esp_err.h"
+
+#include "serial_interface.h"
+#include "wifi_scanner.h"
+#include "bluetooth_scanner.h"
+#include "device_monitor.h"
+#include "connection_monitor.h"
+#include "logger.h"
+#include "connection_manager.h"
+
+#define COMMAND_BUFFER_SIZE 64
+#define BLE_SCAN_DURATION_MS 11000
+
+static void run_ble_scan(esp_err_t result)
+{
+    if (result != ESP_OK) {
+        printf(COLOR_RED "Erreur BLE : %s\n" COLOR_RESET,
+               esp_err_to_name(result));
+        return;
+    }
+
+    printf(COLOR_YELLOW
+           "Observation des appareils pendant 10 secondes...\n"
+           COLOR_RESET);
+
+    vTaskDelay(pdMS_TO_TICKS(BLE_SCAN_DURATION_MS));
+}
+
+static void process_command(
+    const char *command,
+    esp_err_t wifi_status,
+    esp_err_t ble_status
+)
+{
+    if (strcmp(command, "help") == 0) {
+        serial_print_help();
+    }
+
+    /* WIFI SCAN */
+    else if (strcmp(command, "wifi scan") == 0) {
+
+        if (wifi_status != ESP_OK) {
+            serial_print_error("Scanner Wi-Fi indisponible.");
+            return;
+        }
+
+        serial_print_status("Démarrage du scan Wi-Fi...");
+
+        esp_err_t result = wifi_scanner_scan();
+
+        if (result == ESP_OK) {
+            serial_print_success("Scan Wi-Fi terminé.");
+        } else {
+            printf(COLOR_RED "Erreur Wi-Fi : %s\n" COLOR_RESET,
+                   esp_err_to_name(result));
+        }
+    }
+
+    /* WIFI SIGNAL */
+    else if (strcmp(command, "wifi signal") == 0) {
+
+        if (wifi_status != ESP_OK) {
+            serial_print_error("Scanner Wi-Fi indisponible.");
+            return;
+        }
+
+        serial_print_status("Analyse des niveaux de signal Wi-Fi...");
+
+        esp_err_t result = wifi_scanner_scan();
+
+        if (result == ESP_OK) {
+            wifi_scanner_print_signal();
+        } else {
+            serial_print_error("Impossible d'analyser les signaux Wi-Fi.");
+        }
+    }
+
+    /* WIFI INTERFERENCE */
+    else if (strcmp(command, "wifi interference") == 0) {
+
+        if (wifi_status != ESP_OK) {
+            serial_print_error("Scanner Wi-Fi indisponible.");
+            return;
+        }
+
+        serial_print_status("Analyse de la densité des canaux Wi-Fi...");
+
+        esp_err_t result = wifi_scanner_scan();
+
+        if (result == ESP_OK) {
+            wifi_scanner_analyze_interference();
+        } else {
+            serial_print_error("Analyse Wi-Fi impossible.");
+        }
+    }
+
+    /* BLUETOOTH SCAN */
+    else if (strcmp(command, "ble scan") == 0) {
+
+        if (ble_status != ESP_OK) {
+            serial_print_error("Bluetooth indisponible.");
+            return;
+        }
+
+        serial_print_status("Démarrage du scan Bluetooth...");
+
+        esp_err_t result = bluetooth_scanner_start_scan();
+
+        run_ble_scan(result);
+    }
+
+    /* BLE SIGNAL */
+    else if (strcmp(command, "ble signal") == 0) {
+
+        if (ble_status != ESP_OK) {
+            serial_print_error("Bluetooth indisponible.");
+            return;
+        }
+
+        serial_print_status("Analyse des niveaux de signal BLE...");
+
+        esp_err_t result =
+            bluetooth_scanner_start_signal_scan();
+
+        run_ble_scan(result);
+    }
+
+    /* BLE INTERFERENCE */
+    else if (strcmp(command, "ble interference") == 0) {
+
+        if (ble_status != ESP_OK) {
+            serial_print_error("Bluetooth indisponible.");
+            return;
+        }
+
+        serial_print_status("Observation de l'activité radio BLE...");
+
+        esp_err_t result =
+            bluetooth_scanner_start_interference_scan();
+
+        run_ble_scan(result);
+    }
+
+    /* WIFI DISCONNECT */
+    else if (strcmp(command, "wifi disconnect") == 0) {
+
+        serial_print_status("Demande de déconnexion Wi-Fi...");
+
+        esp_err_t result = wifi_scanner_disconnect();
+
+        if (result == ESP_OK) {
+            serial_print_success("ESP32 déconnecté du Wi-Fi.");
+        } else {
+            printf(COLOR_RED "Déconnexion impossible : %s\n" COLOR_RESET,
+                   esp_err_to_name(result));
+        }
+    }
+
+    /* STATUS */
+    else if (strcmp(command, "status") == 0) {
+
+        serial_print_status("État de surveillance :");
+        connection_monitor_report();
+    }
+
+    /* DEVICES */
+    else if (strcmp(command, "devices") == 0) {
+
+        device_monitor_print_summary();
+    }
+
+    /* CONNECTIONS */
+    else if (strcmp(command, "connections") == 0) {
+
+        serial_print_status("Gestion des connexions.");
+        connection_monitor_report();
+    }
+
+    /* CLEAR */
+    else if (strcmp(command, "clear") == 0) {
+
+        serial_clear();
+        serial_print_banner();
+    }
+
+    /* UNKNOWN COMMAND */
+    else if (strlen(command) > 0) {
+
+        serial_print_error("Commande inconnue.");
+
+        printf("Tapez " COLOR_YELLOW "help" COLOR_RESET
+               " pour afficher les commandes.\n");
+    }
+}
+
+void app_main(void)
+{
+    char command[COMMAND_BUFFER_SIZE];
+
+    serial_interface_init();
+
+    serial_clear();
+    
+
+    /* Initialisation Wi-Fi une seule fois */
+    esp_err_t wifi_status = wifi_scanner_init();
+
+    if (wifi_status == ESP_OK) {
+        serial_print_success("Scanner Wi-Fi initialisé.");
+    } else {
+        serial_print_error("Initialisation Wi-Fi échouée.");
+    }
+
+    /* Initialisation Bluetooth une seule fois */
+    esp_err_t ble_status = bluetooth_scanner_init();
+
+    if (ble_status == ESP_OK) {
+        serial_print_success("Scanner Bluetooth initialisé.");
+    } else {
+        serial_print_error("Initialisation Bluetooth échouée.");
+    }
+
+    serial_print_banner();
+
+    printf("\nTapez " COLOR_YELLOW "help" COLOR_RESET
+           " pour afficher les commandes.\n");
+
+    /* TERMINAL PRINCIPAL */
+    while (1) {
+
+        printf("\n" COLOR_GREEN
+               "W-TECH@ESP32"
+               COLOR_RESET ":~$ ");
+
+        fflush(stdout);
+
+        serial_read_command(command, sizeof(command));
+
+        if (strlen(command) > 0) {
+
+            process_command(
+                command,
+                wifi_status,
+                ble_status
+            );
+        }
+    }
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>wifi_scanner.c</h3>
+            <p>Scan des points d'accès Wi-Fi</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>wifi/wifi_scanner.c</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>#include "wifi_scanner.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "nvs_flash.h"
+#include "esp_mac.h"
+#include "distance_estimator.h"
+#include "serial_interface.h"
+#include "device_monitor.h"
+#include "signal_monitor.h"
+#include "logger.h"
+
+#define WIFI_MAX_NETWORKS 30
+
+static wifi_network_t networks[WIFI_MAX_NETWORKS];
+static int network_count = 0;
+
+static const char *wifi_auth_name(wifi_auth_mode_t auth)
+{
+    switch (auth) {
+        case WIFI_AUTH_OPEN: return "Ouvert";
+        case WIFI_AUTH_WEP: return "WEP";
+        case WIFI_AUTH_WPA_PSK: return "WPA";
+        case WIFI_AUTH_WPA2_PSK: return "WPA2";
+        case WIFI_AUTH_WPA_WPA2_PSK: return "WPA/WPA2";
+        case WIFI_AUTH_WPA2_ENTERPRISE: return "WPA2-ENT";
+        case WIFI_AUTH_WPA3_PSK: return "WPA3";
+        case WIFI_AUTH_WPA2_WPA3_PSK: return "WPA2/3";
+        default: return "Inconnue";
+    }
+}
+
+esp_err_t wifi_scanner_init(void)
+{
+    esp_err_t err = nvs_flash_init();
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        err = nvs_flash_init();
+    }
+    if (err != ESP_OK) return err;
+
+    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    esp_netif_create_default_wifi_sta();
+
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    err = esp_wifi_init(&cfg);
+    if (err != ESP_OK) return err;
+
+    err = esp_wifi_set_mode(WIFI_MODE_STA);
+    if (err != ESP_OK) return err;
+
+    err = esp_wifi_start();
+    if (err != ESP_OK) return err;
+
+    LOG_INFO("Scanner Wi-Fi initialisé.");
+    return ESP_OK;
+}
+
+esp_err_t wifi_scanner_scan(void)
+{
+    wifi_scan_config_t scan_config = {
+        .ssid = NULL,
+        .bssid = NULL,
+        .channel = 0,
+        .show_hidden = true,
+        .scan_type = WIFI_SCAN_TYPE_PASSIVE
+    };
+
+    serial_print_status("Début du scan Wi-Fi...");
+    esp_err_t err = esp_wifi_scan_start(&scan_config, true);
+    if (err != ESP_OK) {
+        LOG_ERROR("Échec du scan Wi-Fi : %s", esp_err_to_name(err));
+        return err;
+    }
+
+       uint16_t count = 0;
+    err = esp_wifi_scan_get_ap_num(&count);
+
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    if (count == 0) {
+        network_count = 0;
+        serial_print_status("Aucun réseau Wi-Fi détecté.");
+        return ESP_OK;
+    }
+
+    uint16_t limit = count > WIFI_MAX_NETWORKS
+                   ? WIFI_MAX_NETWORKS
+                   : count;
+
+    wifi_ap_record_t *records = calloc(limit, sizeof(wifi_ap_record_t));
+
+    if (records == NULL) {
+        return ESP_ERR_NO_MEM;
+    }
+
+    uint16_t found = limit;
+    err = esp_wifi_scan_get_ap_records(&found, records);
+
+    if (err == ESP_OK) {
+
+        network_count = found;
+
+        serial_print_wifi_header();
+
+        for (uint16_t i = 0; i < found; i++) {
+
+            char bssid[18];
+
+            snprintf(
+                bssid,
+                sizeof(bssid),
+                MACSTR,
+                MAC2STR(records[i].bssid)
+            );
+
+            const char *ssid = (const char *)records[i].ssid;
+
+            snprintf(
+                networks[i].ssid,
+                sizeof(networks[i].ssid),
+                "%s",
+                ssid[0] ? ssid : "<SSID caché>"
+            );
+
+            snprintf(
+                networks[i].bssid,
+                sizeof(networks[i].bssid),
+                "%s",
+                bssid
+            );
+
+            networks[i].id = i;
+            networks[i].channel = records[i].primary;
+            networks[i].rssi = records[i].rssi;
+
+            snprintf(
+                networks[i].security,
+                sizeof(networks[i].security),
+                "%s",
+                wifi_auth_name(records[i].authmode)
+            );
+
+            networks[i].distance =
+                distance_estimate_m(records[i].rssi);
+
+            serial_print_wifi_network(
+                networks[i].ssid,
+                networks[i].bssid,
+                networks[i].channel,
+                networks[i].rssi,
+                networks[i].security,
+                networks[i].distance
+            );
+
+            signal_monitor_report(
+                "Wi-Fi",
+                networks[i].ssid,
+                networks[i].rssi
+            );
+
+            device_monitor_add_wifi();
+        }
+    }
+
+    free(records);
+    return err;
+}
+
+
+/* Nombre de réseaux détectés */
+int wifi_scanner_get_count(void)
+{
+    return network_count;
+}
+
+
+/* Récupérer un réseau par son identifiant */
+const wifi_network_t *wifi_scanner_get_network(int id)
+{
+    if (id < 0 || id >= network_count)
+    {
+        return NULL;
+    }
+
+    return &networks[id];
+}
+
+
+/* Afficher tous les réseaux enregistrés */
+void wifi_scanner_print_networks(void)
+{
+    if (network_count == 0)
+    {
+        serial_print_status("Aucun réseau enregistré.");
+        return;
+    }
+
+    serial_print_wifi_header();
+
+    for (int i = 0; i < network_count; i++)
+    {
+        wifi_network_t *network = &networks[i];
+
+        serial_print_wifi_network(
+            network->ssid,
+            network->bssid,
+            network->channel,
+            network->rssi,
+            network->security,
+            network->distance
+        );
+    }
+}
+
+
+/* Afficher les détails d'un réseau */
+void wifi_scanner_print_details(int id)
+{
+    const wifi_network_t *network = wifi_scanner_get_network(id);
+
+    if (network == NULL)
+    {
+        serial_print_error("Identifiant Wi-Fi invalide.");
+        return;
+    }
+
+    printf("\n========== DETAILS WI-FI ==========\n");
+    printf("ID       : %d\n", network->id);
+    printf("SSID     : %s\n", network->ssid);
+    printf("BSSID    : %s\n", network->bssid);
+    printf("Canal    : %d\n", network->channel);
+    printf("RSSI     : %d dBm\n", network->rssi);
+    printf("Sécurité : %s\n", network->security);
+    printf("Distance : %.2f m\n", network->distance);
+    printf("===================================\n\n");
+}
+
+
+/* Déconnecter l'ESP32 de son réseau Wi-Fi */
+esp_err_t wifi_scanner_disconnect(void)
+{
+    esp_err_t err = esp_wifi_disconnect();
+
+    if (err == ESP_OK)
+    {
+        serial_print_success("ESP32 déconnecté du Wi-Fi.");
+    }
+    else
+    {
+        serial_print_error("Impossible de déconnecter le Wi-Fi.");
+    }
+
+    return err;
+}
+
+void wifi_scanner_print_signal(void)
+{
+    if (network_count == 0) {
+        serial_print_status("Aucun résultat. Lancez un scan Wi-Fi.");
+        return;
+    }
+
+    printf("\n" COLOR_CYAN COLOR_BOLD);
+    printf("========== WIFI SIGNAL ANALYSIS ==========\n");
+    printf(COLOR_RESET);
+
+    for (int i = 0; i < network_count; i++) {
+
+        const wifi_network_t *network = &networks[i];
+
+        const char *color;
+
+        if (network->rssi >= -50)
+            color = COLOR_GREEN;
+        else if (network->rssi >= -70)
+            color = COLOR_YELLOW;
+        else
+            color = COLOR_RED;
+
+        printf(
+            "[%02d] %-25.25s | Canal: %2d | %s%d dBm%s\n",
+            network->id,
+            network->ssid,
+            network->channel,
+            color,
+            network->rssi,
+            COLOR_RESET
+        );
+    }
+
+    printf("==========================================\n");
+}
+
+void wifi_scanner_analyze_interference(void)
+{
+    if (network_count == 0) {
+        serial_print_status("Aucun résultat. Lancez un scan Wi-Fi.");
+        return;
+    }
+
+    int channel_count[14] = {0};
+
+    for (int i = 0; i < network_count; i++) {
+        int channel = networks[i].channel;
+
+        if (channel >= 1 && channel <= 13) {
+            channel_count[channel]++;
+        }
+    }
+
+    printf("\n" COLOR_CYAN COLOR_BOLD);
+    printf("======= WIFI CHANNEL ANALYSIS =======\n");
+    printf(COLOR_RESET);
+
+    for (int channel = 1; channel <= 13; channel++) {
+
+        if (channel_count[channel] == 0)
+            continue;
+
+        printf("Canal %2d : %d réseau(x) détecté(s) ",
+               channel, channel_count[channel]);
+
+        if (channel_count[channel] >= 4) {
+            printf(COLOR_RED "[DENSE]\n" COLOR_RESET);
+        }
+        else if (channel_count[channel] >= 2) {
+            printf(COLOR_YELLOW "[MODÉRÉ]\n" COLOR_RESET);
+        }
+        else {
+            printf(COLOR_GREEN "[FAIBLE]\n" COLOR_RESET);
+        }
+    }
+
+    printf("\n");
+    printf(COLOR_YELLOW
+           "Indicateur basé sur les réseaux détectés, "
+           "pas une mesure directe des interférences radio.\n"
+           COLOR_RESET);
+
+    printf("=====================================\n");
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>wifi_scanner.h</h3>
+            <p>Déclarations du module Wi-Fi</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>wifi/wifi_scanner.h</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>#ifndef WIFI_SCANNER_H
+#define WIFI_SCANNER_H
+
+#include "esp_err.h"
+#include "esp_wifi.h"
+
+#define WIFI_MAX_NETWORKS 30
+
+typedef struct
+{
+    int id;
+    char ssid[33];
+    char bssid[18];
+    int channel;
+    int rssi;
+    char security[16];
+    float distance;
+} wifi_network_t;
+
+/* Initialisation et scan */
+esp_err_t wifi_scanner_init(void);
+esp_err_t wifi_scanner_scan(void);
+
+/* Affichage */
+void wifi_scanner_print_networks(void);
+void wifi_scanner_print_details(int id);
+
+/* Récupération des réseaux */
+int wifi_scanner_get_count(void);
+const wifi_network_t *wifi_scanner_get_network(int id);
+
+/* Déconnexion Wi-Fi de l'ESP32 */
+esp_err_t wifi_scanner_disconnect(void);
+void wifi_scanner_print_signal(void);
+void wifi_scanner_analyze_interference(void);
+
+#endif
+</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>bluetooth_scanner.c</h3>
+            <p>Découverte des appareils Bluetooth Low Energy</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>bluetooth/bluetooth_scanner.c</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>#include "bluetooth_scanner.h"
+
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+
+#include "esp_bt.h"
+#include "esp_bt_main.h"
+#include "esp_gap_ble_api.h"
+#include "esp_bt_device.h"
+
+#include "distance_estimator.h"
+#include "serial_interface.h"
+#include "device_monitor.h"
+#include "signal_monitor.h"
+#include "logger.h"
+
+#define BLE_SCAN_SECONDS 10
+
+typedef enum {
+    BLE_OUTPUT_NORMAL,
+    BLE_OUTPUT_SIGNAL,
+    BLE_OUTPUT_INTERFERENCE
+} ble_output_mode_t;
+
+static ble_output_mode_t output_mode = BLE_OUTPUT_NORMAL;
+
+static int ble_total_devices = 0;
+static int ble_strong_signals = 0;
+static int ble_medium_signals = 0;
+static int ble_weak_signals = 0;
+
+
+/* Convertir une adresse BLE en texte */
+static void format_address(
+    const uint8_t *bda,
+    char *out,
+    size_t size
+)
+{
+    snprintf(
+        out,
+        size,
+        "%02X:%02X:%02X:%02X:%02X:%02X",
+        bda[0], bda[1], bda[2],
+        bda[3], bda[4], bda[5]
+    );
+}
+
+
+/* Callback principal Bluetooth */
+static void ble_gap_callback(
+    esp_gap_ble_cb_event_t event,
+    esp_ble_gap_cb_param_t *param
+)
+{
+    switch (event) {
+
+        /* Les paramètres du scan sont configurés */
+        case ESP_GAP_BLE_SCAN_PARAM_SET_COMPLETE_EVT:
+
+            if (param->scan_param_cmpl.status == ESP_BT_STATUS_SUCCESS) {
+
+                esp_err_t err = esp_ble_gap_start_scanning(
+                    BLE_SCAN_SECONDS
+                );
+
+                if (err != ESP_OK) {
+                    LOG_ERROR(
+                        "Impossible de démarrer le scan BLE : %s",
+                        esp_err_to_name(err)
+                    );
+
+                    output_mode = BLE_OUTPUT_NORMAL;
+                }
+
+            } else {
+
+                LOG_ERROR("Configuration du scan BLE échouée.");
+
+                output_mode = BLE_OUTPUT_NORMAL;
+            }
+
+            break;
+
+
+        /* Réception des résultats du scan */
+        case ESP_GAP_BLE_SCAN_RESULT_EVT:
+
+            if (param->scan_rst.search_evt == ESP_GAP_SEARCH_INQ_RES_EVT) {
+
+                int rssi = param->scan_rst.rssi;
+
+                ble_total_devices++;
+
+                if (rssi >= -60) {
+                    ble_strong_signals++;
+                }
+                else if (rssi >= -80) {
+                    ble_medium_signals++;
+                }
+                else {
+                    ble_weak_signals++;
+                }
+
+                char address[18];
+                char name[ESP_BLE_ADV_DATA_LEN_MAX + 1] = {0};
+
+                format_address(
+                    param->scan_rst.bda,
+                    address,
+                    sizeof(address)
+                );
+
+                uint8_t name_len = 0;
+
+                uint8_t *name_data = esp_ble_resolve_adv_data(
+                    param->scan_rst.ble_adv,
+                    ESP_BLE_AD_TYPE_NAME_CMPL,
+                    &name_len
+                );
+
+                if (name_data == NULL) {
+
+                    name_data = esp_ble_resolve_adv_data(
+                        param->scan_rst.ble_adv,
+                        ESP_BLE_AD_TYPE_NAME_SHORT,
+                        &name_len
+                    );
+                }
+
+                if (name_data != NULL && name_len > 0) {
+
+                    size_t copy_len = name_len < sizeof(name) - 1
+                                    ? name_len
+                                    : sizeof(name) - 1;
+
+                    memcpy(name, name_data, copy_len);
+
+                } else {
+
+                    snprintf(
+                        name,
+                        sizeof(name),
+                        "Appareil sans nom"
+                    );
+                }
+
+                /* Affichage individuel sauf en mode interférences */
+                if (output_mode != BLE_OUTPUT_INTERFERENCE) {
+
+                    serial_print_ble_device(
+                        name,
+                        address,
+                        rssi,
+                        distance_estimate_m(rssi)
+                    );
+                }
+
+                signal_monitor_report("BLE", name, rssi);
+
+                device_monitor_add_ble();
+            }
+
+            /* Fin du scan */
+            else if (param->scan_rst.search_evt == ESP_GAP_SEARCH_INQ_CMPL_EVT) {
+
+                serial_print_success("Scan BLE terminé.");
+
+                if (output_mode == BLE_OUTPUT_INTERFERENCE) {
+
+                    printf("\n" COLOR_CYAN COLOR_BOLD);
+                    printf("======= BLE RADIO OBSERVATION =======\n");
+                    printf(COLOR_RESET);
+
+                    printf(
+                        "Appareils observés : %d\n",
+                        ble_total_devices
+                    );
+
+                    printf(
+                        COLOR_GREEN "Signaux forts   : %d\n" COLOR_RESET,
+                        ble_strong_signals
+                    );
+
+                    printf(
+                        COLOR_YELLOW "Signaux moyens  : %d\n" COLOR_RESET,
+                        ble_medium_signals
+                    );
+
+                    printf(
+                        COLOR_RED "Signaux faibles  : %d\n" COLOR_RESET,
+                        ble_weak_signals
+                    );
+
+                    printf(
+                        COLOR_YELLOW
+                        "\nObservation des annonces BLE uniquement. "
+                        "Ce résultat ne mesure pas directement les interférences.\n"
+                        COLOR_RESET
+                    );
+
+                    printf("=====================================\n");
+                }
+
+                output_mode = BLE_OUTPUT_NORMAL;
+            }
+
+            break;
+
+
+        default:
+            break;
+    }
+}
+
+
+/* Initialisation Bluetooth */
+esp_err_t bluetooth_scanner_init(void)
+{
+    esp_err_t err;
+
+    err = esp_bt_controller_mem_release(
+        ESP_BT_MODE_CLASSIC_BT
+    );
+
+    if (err != ESP_OK && err != ESP_ERR_INVALID_STATE) {
+        return err;
+    }
+
+    esp_bt_controller_config_t bt_cfg =
+        BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+
+    err = esp_bt_controller_init(&bt_cfg);
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    err = esp_bt_controller_enable(ESP_BT_MODE_BLE);
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    err = esp_bluedroid_init();
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    err = esp_bluedroid_enable();
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    err = esp_ble_gap_register_callback(ble_gap_callback);
+    if (err != ESP_OK) {
+        return err;
+    }
+
+    LOG_INFO("Scanner BLE initialisé.");
+
+    return ESP_OK;
+}
+
+
+/* Fonction commune de démarrage */
+static esp_err_t bluetooth_start_scan_with_mode(
+    ble_output_mode_t mode
+)
+{
+    ble_total_devices = 0;
+    ble_strong_signals = 0;
+    ble_medium_signals = 0;
+    ble_weak_signals = 0;
+
+    output_mode = mode;
+
+    esp_ble_scan_params_t scan_params = {
+        .scan_type = BLE_SCAN_TYPE_PASSIVE,
+        .own_addr_type = BLE_ADDR_TYPE_PUBLIC,
+        .scan_filter_policy = BLE_SCAN_FILTER_ALLOW_ALL,
+        .scan_interval = 0x50,
+        .scan_window = 0x30,
+        .scan_duplicate = BLE_SCAN_DUPLICATE_DISABLE
+    };
+
+    serial_print_status("Configuration du scan BLE passif...");
+
+    esp_err_t err = esp_ble_gap_set_scan_params(
+        &scan_params
+    );
+
+    if (err != ESP_OK) {
+        output_mode = BLE_OUTPUT_NORMAL;
+    }
+
+    return err;
+}
+
+
+/* Scan BLE classique */
+esp_err_t bluetooth_scanner_start_scan(void)
+{
+    return bluetooth_start_scan_with_mode(
+        BLE_OUTPUT_NORMAL
+    );
+}
+
+
+/* Analyse des niveaux de signal */
+esp_err_t bluetooth_scanner_start_signal_scan(void)
+{
+    return bluetooth_start_scan_with_mode(
+        BLE_OUTPUT_SIGNAL
+    );
+}
+
+
+/* Observation de l'activité radio */
+esp_err_t bluetooth_scanner_start_interference_scan(void)
+{
+    return bluetooth_start_scan_with_mode(
+        BLE_OUTPUT_INTERFERENCE
+    );
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>bluetooth_scanner.h</h3>
+            <p>Déclarations du module Bluetooth</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>bluetooth/bluetooth_scanner.h</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>#ifndef BLUETOOTH_SCANNER_H
+#define BLUETOOTH_SCANNER_H
+
+#include "esp_err.h"
+
+esp_err_t bluetooth_scanner_init(void);
+esp_err_t bluetooth_scanner_start_scan(void);
+
+esp_err_t bluetooth_scanner_start_signal_scan(void);
+esp_err_t bluetooth_scanner_start_interference_scan(void);
+
+#endif</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>connection_manager.c / .h</h3>
+            <p>Gestion des connexions réseau</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>connection/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>Connection_manager.c
+            #include "connection_manager.h"
+
+#include <stdio.h>
+
+#include "esp_wifi.h"
+#include "esp_log.h"
+
+#include "serial_interface.h"
+
+/* Nom du module dans les logs ESP-IDF */
+static const char *TAG = "CONNECTION_MANAGER";
+
+/* État des connexions */
+static bool wifi_connected = false;
+static bool ble_connected = false;
+
+/* Fonction de déconnexion BLE fournie par le module Bluetooth */
+static ble_disconnect_callback_t ble_disconnect_callback = NULL;
+
+
+/* =====================================================
+   INITIALISATION
+   ===================================================== */
+
+void connection_manager_init(void)
+{
+    wifi_connected = false;
+    ble_connected = false;
+
+    ble_disconnect_callback = NULL;
+
+    ESP_LOGI(TAG, "Connection manager initialized");
+
+    serial_print_success("Connection manager initialized.");
+}
+
+
+/* =====================================================
+   MISE À JOUR DE L'ÉTAT WI-FI
+   ===================================================== */
+
+void connection_manager_wifi_connected(void)
+{
+    wifi_connected = true;
+
+    ESP_LOGI(TAG, "ESP32 connected to Wi-Fi");
+}
+
+
+void connection_manager_wifi_disconnected(void)
+{
+    wifi_connected = false;
+
+    ESP_LOGI(TAG, "ESP32 disconnected from Wi-Fi");
+}
+
+
+/* =====================================================
+   MISE À JOUR DE L'ÉTAT BLUETOOTH
+   ===================================================== */
+
+void connection_manager_ble_connected(void)
+{
+    ble_connected = true;
+
+    ESP_LOGI(TAG, "ESP32 connected to a BLE device");
+}
+
+
+void connection_manager_ble_disconnected(void)
+{
+    ble_connected = false;
+
+    ESP_LOGI(TAG, "ESP32 disconnected from BLE device");
+}
+
+
+/* =====================================================
+   ENREGISTREMENT DU CALLBACK BLUETOOTH
+   ===================================================== */
+
+void connection_manager_set_ble_disconnect_callback(
+    ble_disconnect_callback_t callback)
+{
+    ble_disconnect_callback = callback;
+
+    ESP_LOGI(TAG, "BLE disconnect callback registered");
+}
+
+
+/* =====================================================
+   DÉCONNEXION WI-FI
+   ===================================================== */
+
+esp_err_t connection_manager_disconnect_wifi(void)
+{
+    /*
+     * Vérifier l'état réel de la connexion Wi-Fi.
+     * ESP_OK signifie que l'ESP32 est connecté à un point d'accès.
+     */
+    wifi_ap_record_t ap_info;
+
+    esp_err_t result = esp_wifi_sta_get_ap_info(&ap_info);
+
+    if (result != ESP_OK)
+    {
+        wifi_connected = false;
+
+        serial_print_status("ESP32 is not connected to Wi-Fi.");
+
+        return result;
+    }
+
+    /* Déconnecter uniquement l'ESP32 */
+    result = esp_wifi_disconnect();
+
+    if (result == ESP_OK)
+    {
+        wifi_connected = false;
+
+        serial_print_success("ESP32 disconnected from Wi-Fi.");
+    }
+    else
+    {
+        serial_print_error("Wi-Fi disconnection failed.");
+        ESP_LOGE(TAG, "Wi-Fi disconnect error: %s",
+                 esp_err_to_name(result));
+    }
+
+    return result;
+}
+
+
+/* =====================================================
+   DÉCONNEXION BLUETOOTH
+   ===================================================== */
+
+esp_err_t connection_manager_disconnect_ble(void)
+{
+    /*
+     * Vérifier si une connexion BLE existe.
+     */
+    if (!ble_connected)
+    {
+        serial_print_status("No active BLE connection.");
+
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    /*
+     * Vérifier si le module Bluetooth a fourni
+     * une fonction capable de déconnecter le périphérique.
+     */
+    if (ble_disconnect_callback == NULL)
+    {
+        serial_print_error(
+            "BLE disconnection is not configured yet."
+        );
+
+        return ESP_ERR_NOT_SUPPORTED;
+    }
+
+    /*
+     * Exécuter la fonction de déconnexion du module BLE.
+     */
+    esp_err_t result = ble_disconnect_callback();
+
+    if (result == ESP_OK)
+    {
+        ble_connected = false;
+
+        serial_print_success("BLE device disconnected.");
+    }
+    else
+    {
+        serial_print_error("BLE disconnection failed.");
+
+        ESP_LOGE(TAG, "BLE disconnect error: %s",
+                 esp_err_to_name(result));
+    }
+
+    return result;
+}
+
+
+/* =====================================================
+   VÉRIFICATION DES CONNEXIONS
+   ===================================================== */
+
+bool connection_manager_is_wifi_connected(void)
+{
+    wifi_ap_record_t ap_info;
+
+    /*
+     * On interroge directement le pilote Wi-Fi
+     * pour éviter de dépendre uniquement d'une variable.
+     */
+    if (esp_wifi_sta_get_ap_info(&ap_info) == ESP_OK)
+    {
+        wifi_connected = true;
+    }
+    else
+    {
+        wifi_connected = false;
+    }
+
+    return wifi_connected;
+}
+
+
+bool connection_manager_is_ble_connected(void)
+{
+    return ble_connected;
+}
+
+
+/* =====================================================
+   AFFICHAGE DE L'ÉTAT DES CONNEXIONS
+   ===================================================== */
+
+void connection_manager_print_status(void)
+{
+    bool wifi_status = connection_manager_is_wifi_connected();
+    bool ble_status = connection_manager_is_ble_connected();
+
+    printf("\n");
+    printf("%s========== CONNECTION STATUS ==========%s\n",
+           COLOR_BOLD, COLOR_RESET);
+
+    if (wifi_status)
+    {
+        printf("%s[CONNECTED]%s Wi-Fi\n",
+               COLOR_GREEN, COLOR_RESET);
+    }
+    else
+    {
+        printf("%s[DISCONNECTED]%s Wi-Fi\n",
+               COLOR_RED, COLOR_RESET);
+    }
+
+    if (ble_status)
+    {
+        printf("%s[CONNECTED]%s Bluetooth LE\n",
+               COLOR_GREEN, COLOR_RESET);
+    }
+    else
+    {
+        printf("%s[DISCONNECTED]%s Bluetooth LE\n",
+               COLOR_RED, COLOR_RESET);
+    }
+
+    printf("%s=======================================%s\n\n",
+           COLOR_BOLD, COLOR_RESET);
+}
+
+
+
+connection_manager.h
+
+#ifndef CONNECTION_MANAGER_H
+#define CONNECTION_MANAGER_H
+
+#include "esp_err.h"
+#include <stdbool.h>
+
+/* Type de fonction utilisée pour déconnecter un périphérique BLE */
+typedef esp_err_t (*ble_disconnect_callback_t)(void);
+
+/* Initialisation */
+void connection_manager_init(void);
+
+/* Mise à jour de l'état des connexions */
+void connection_manager_wifi_connected(void);
+void connection_manager_wifi_disconnected(void);
+
+void connection_manager_ble_connected(void);
+void connection_manager_ble_disconnected(void);
+
+/* Enregistrement de la fonction de déconnexion BLE */
+void connection_manager_set_ble_disconnect_callback(
+    ble_disconnect_callback_t callback
+);
+
+/* Gestion des déconnexions */
+esp_err_t connection_manager_disconnect_wifi(void);
+esp_err_t connection_manager_disconnect_ble(void);
+
+/* Affichage */
+void connection_manager_print_status(void);
+void connection_manager_init(void);
+
+/* Vérification des états */
+bool connection_manager_is_wifi_connected(void);
+bool connection_manager_is_ble_connected(void);
+
+#endif
+
+      </code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>distance_estimator.c / .h</h3>
+            <p>Estimation indicative de la distance selon le RSSI</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>estimator/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>
+distance_estimator.c
+
+#include "distance_estimator.h"
+#include <math.h>
+
+/*
+ * Estimation indicative basée sur le modèle de perte de propagation.
+ * tx_power_at_1m : puissance RSSI théorique à 1 mètre.
+ * path_loss : facteur d'environnement (2 = espace ouvert approximatif).
+ * Les murs, obstacles, antennes et interférences rendent cette estimation
+ * très imprécise. Elle ne doit pas être interprétée comme une mesure réelle.
+ */
+float distance_estimate_m(int rssi)
+{
+    const float tx_power_at_1m = -59.0f;
+    const float path_loss = 2.0f;
+    return powf(10.0f, ((tx_power_at_1m - (float)rssi) /
+                        (10.0f * path_loss)));
+}
+
+
+distance_estimator.h
+
+
+#ifndef DISTANCE_ESTIMATOR_H
+#define DISTANCE_ESTIMATOR_H
+
+float distance_estimate_m(int rssi);
+
+#endif
+</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>serial_interface.c / .h</h3>
+            <p>Affichage des informations dans le moniteur série</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>interface/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>serial_interface.c
+            #include "serial_interface.h"
+
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+
+
+#include "driver/uart.h"
+#include "esp_vfs_dev.h"
+#include "freertos/FreeRTOS.h"
+
+/* =====================================================
+   INITIALISATION UART
+   ===================================================== */
+
+void serial_interface_init(void)
+{
+    esp_err_t result = uart_driver_install(
+        UART_NUM_0,
+        256,
+        0,
+        0,
+        NULL,
+        0
+    );
+
+    /*
+     * ESP_ERR_INVALID_STATE signifie que le pilote
+     * est déjà installé.
+     */
+    if (result != ESP_OK && result != ESP_ERR_INVALID_STATE)
+    {
+        printf("Erreur initialisation UART : %s\n",
+               esp_err_to_name(result));
+        return;
+    }
+
+    /* Utiliser le pilote UART pour les entrées/sorties */
+    esp_vfs_dev_uart_use_driver(UART_NUM_0);
+}
+
+/* =====================================================
+   BANNIERE
+   ===================================================== */
+
+void serial_print_banner(void)
+{
+    printf("\n");
+
+    printf(COLOR_CYAN COLOR_BOLD);
+
+    printf("============================================\n");
+    printf("       W-TECH WIRELESS SECURITY SCANNER     \n");
+    printf("                 VERSION 1                  \n");
+    printf("============================================\n");
+
+    printf(COLOR_RESET);
+
+    printf(COLOR_GREEN "SYSTEM STATUS : READY\n" COLOR_RESET);
+
+    printf("HARDWARE : ESP32-WROOM-32\n");
+    printf("INTERFACE : SERIAL TERMINAL\n");
+    printf("MODE : PASSIVE SCANNING\n\n");
+}
+
+/* =====================================================
+   AIDE
+   ===================================================== */
+
+void serial_print_help(void)
+{
+    printf("\n");
+
+    printf(COLOR_CYAN COLOR_BOLD);
+    printf("============== COMMAND CENTER ==============\n");
+    printf(COLOR_RESET);
+
+    printf(COLOR_YELLOW "SYSTEM\n" COLOR_RESET);
+    printf("  help                  : Afficher les commandes\n");
+    printf("  clear                 : Nettoyer le terminal\n");
+    printf("  status                : Etat du systeme\n");
+    printf("  devices               : Appareils detectes\n");
+    printf("  connections           : Connexions gerees\n\n");
+
+    printf(COLOR_YELLOW "WIFI\n" COLOR_RESET);
+    printf("  wifi scan             : Scanner les reseaux\n");
+    printf("  wifi signal           : Analyser les signaux\n");
+    printf("  wifi interference     : Analyser les canaux\n");
+    printf("  wifi disconnect       : Deconnecter l'ESP32\n\n");
+
+    printf(COLOR_YELLOW "BLUETOOTH\n" COLOR_RESET);
+    printf("  ble scan              : Scanner les appareils BLE\n");
+    printf("  ble signal            : Analyser les signaux BLE\n");
+    printf("  ble interference      : Observer l'activite BLE\n\n");
+
+    printf(COLOR_CYAN);
+    printf("=============================================\n");
+    printf(COLOR_RESET);
+}
+/* =====================================================
+   MESSAGES
+   ===================================================== */
+
+void serial_print_status(const char *message)
+{
+    printf(COLOR_CYAN "[STATUS] " COLOR_RESET "%s\n", message);
+}
+
+void serial_print_error(const char *message)
+{
+    printf(COLOR_RED "[ERROR] " COLOR_RESET "%s\n", message);
+}
+
+void serial_print_success(const char *message)
+{
+    printf(COLOR_GREEN "[SUCCESS] " COLOR_RESET "%s\n", message);
+}
+
+/* =====================================================
+   WIFI AFFICHAGE
+   ===================================================== */
+
+void serial_print_wifi_header(void)
+{
+    printf("\n");
+
+    printf(COLOR_BLUE COLOR_BOLD);
+    printf("=============== WIFI SCANNER ===============\n");
+    printf(COLOR_RESET);
+
+    printf("%-30s %-17s CH RSSI  SECURITY\n",
+           "SSID", "BSSID");
+
+    printf("---------------------------------------------------------------\n");
+}
+
+void serial_print_wifi_network(
+    const char *ssid,
+    const char *bssid,
+    int channel,
+    int rssi,
+    const char *security,
+    float distance_m)
+{
+    const char *signal_color;
+
+    if (rssi >= -50)
+        signal_color = COLOR_GREEN;
+    else if (rssi >= -70)
+        signal_color = COLOR_YELLOW;
+    else
+        signal_color = COLOR_RED;
+
+    printf("%-30.30s %-17s %2d ",
+           ssid, bssid, channel);
+
+    printf("%s%4d%s ",
+           signal_color, rssi, COLOR_RESET);
+
+    printf("%-10s %.2f m\n",
+           security, distance_m);
+}
+
+/* =====================================================
+   BLUETOOTH AFFICHAGE
+   ===================================================== */
+
+void serial_print_ble_device(
+    const char *name,
+    const char *address,
+    int rssi,
+    float distance_m)
+{
+    const char *signal_color;
+
+    if (rssi >= -50)
+        signal_color = COLOR_GREEN;
+    else if (rssi >= -70)
+        signal_color = COLOR_YELLOW;
+    else
+        signal_color = COLOR_RED;
+
+    printf(COLOR_MAGENTA "[BLE] " COLOR_RESET);
+
+    printf("%-24.24s | %s | ",
+           name, address);
+
+    printf("%s%d dBm%s | %.2f m\n",
+           signal_color, rssi, COLOR_RESET, distance_m);
+}
+
+/* =====================================================
+   LECTURE DES COMMANDES
+   ===================================================== */
+
+void serial_read_command(char *buffer, size_t buffer_size)
+{
+    if (buffer == NULL || buffer_size < 2)
+    {
+        return;
+    }
+
+    static bool previous_was_cr = false;
+
+    size_t index = 0;
+    uint8_t character;
+
+    memset(buffer, 0, buffer_size);
+
+    while (1)
+    {
+        int received = uart_read_bytes(
+            UART_NUM_0,
+            &character,
+            1,
+            pdMS_TO_TICKS(100)
+        );
+
+        if (received <= 0)
+        {
+            continue;
+        }
+
+        /* Ignorer le LF après un CR */
+        if (character == '\n' && previous_was_cr)
+        {
+            previous_was_cr = false;
+            continue;
+        }
+
+        /* Entrée */
+        if (character == '\r' || character == '\n')
+        {
+            previous_was_cr = (character == '\r');
+
+            buffer[index] = '\0';
+
+            printf("\n");
+            fflush(stdout);
+
+            return;
+        }
+
+        previous_was_cr = false;
+
+        /* Retour arrière */
+        if (character == 8 || character == 127)
+        {
+            if (index > 0)
+            {
+                index--;
+                buffer[index] = '\0';
+
+                printf("\b \b");
+                fflush(stdout);
+            }
+
+            continue;
+        }
+
+        /* Caractères imprimables */
+        if (character >= 32 && character <= 126)
+        {
+            if (index < buffer_size - 1)
+            {
+                buffer[index++] = (char)character;
+
+                putchar(character);
+                fflush(stdout);
+            }
+        }
+    }
+}
+
+/* =====================================================
+   NETTOYAGE TERMINAL
+   ===================================================== */
+
+void serial_clear(void)
+{
+    printf("\033[2J\033[H");
+    fflush(stdout);
+}
+
+
+serial_interface.h
+
+#ifndef SERIAL_INTERFACE_H
+#define SERIAL_INTERFACE_H
+
+#include <stddef.h>
+
+/* Couleurs ANSI */
+#define COLOR_RESET   "\033[0m"
+#define COLOR_RED     "\033[31m"
+#define COLOR_GREEN   "\033[32m"
+#define COLOR_YELLOW  "\033[33m"
+#define COLOR_BLUE    "\033[34m"
+#define COLOR_MAGENTA "\033[35m"
+#define COLOR_CYAN    "\033[36m"
+#define COLOR_BOLD    "\033[1m"
+
+/* Initialisation */
+void serial_interface_init(void);
+
+/* Affichage */
+void serial_print_banner(void);
+void serial_print_help(void);
+
+void serial_print_status(const char *message);
+void serial_print_error(const char *message);
+void serial_print_success(const char *message);
+
+void serial_print_wifi_header(void);
+
+void serial_print_wifi_network(
+    const char *ssid,
+    const char *bssid,
+    int channel,
+    int rssi,
+    const char *security,
+    float distance_m
+);
+
+void serial_print_ble_device(
+    const char *name,
+    const char *address,
+    int rssi,
+    float distance_m
+);
+
+/* Gestion du terminal */
+void serial_read_command(char *buffer, size_t buffer_size);
+void serial_clear(void);
+
+#endif
+
+          </code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>logger.c / .h</h3>
+            <p>Gestion des messages et journaux du programme</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>logger/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>logger.c
+            #include "logger.h"
+
+/* ESP-IDF fournit déjà le système de journalisation utilisé par ce module. */
+
+
+logger.h
+
+
+#ifndef LOGGER_H
+#define LOGGER_H
+
+#include "esp_log.h"
+
+#define LOG_TAG "W-TECH"
+
+#define LOG_INFO(fmt, ...) ESP_LOGI(LOG_TAG, fmt, ##__VA_ARGS__)
+#define LOG_WARN(fmt, ...) ESP_LOGW(LOG_TAG, fmt, ##__VA_ARGS__)
+#define LOG_ERROR(fmt, ...) ESP_LOGE(LOG_TAG, fmt, ##__VA_ARGS__)
+
+#endif
+          </code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>connection_monitor.c / .h</h3>
+            <p>Surveillance des connexions</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>monitor/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>connection_monitor.c
+
+          #include "connection_monitor.h"
+#include "esp_wifi.h"
+#include "esp_err.h"
+#include "serial_interface.h"
+
+void connection_monitor_report(void)
+{
+    wifi_ap_record_t ap_info = {0};
+    esp_err_t result = esp_wifi_sta_get_ap_info(&ap_info);
+
+    if (result == ESP_OK) {
+        serial_print_status("Station Wi-Fi connectée à un point d'accès.");
+    } else if (result == ESP_ERR_WIFI_NOT_CONNECT) {
+        serial_print_status("Aucune connexion Wi-Fi active (mode scan passif).");
+    } else {
+        serial_print_status("État de connexion Wi-Fi indisponible.");
+    }
+}
+
+
+connection_monitor.h
+
+#ifndef CONNECTION_MONITOR_H
+#define CONNECTION_MONITOR_H
+
+void connection_monitor_report(void);
+
+#endif
+</code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>device_monitor.c / .h</h3>
+            <p>Surveillance des appareils détectés</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>monitor/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>device_monitor.c 
+            #include "device_monitor.h"
+#include <stdio.h>
+
+static unsigned int wifi_count;
+static unsigned int ble_count;
+
+void device_monitor_reset(void)
+{
+    wifi_count = 0;
+    ble_count = 0;
+}
+
+void device_monitor_add_wifi(void) { wifi_count++; }
+void device_monitor_add_ble(void) { ble_count++; }
+
+void device_monitor_print_summary(void)
+{
+    printf("\n[DEVICES] Réseaux Wi-Fi détectés : %u | Appareils BLE observés : %u\n",
+           wifi_count, ble_count);
+}
+
+
+device_monitor.h
+
+#ifndef DEVICE_MONITOR_H
+#define DEVICE_MONITOR_H
+
+void device_monitor_reset(void);
+void device_monitor_add_wifi(void);
+void device_monitor_add_ble(void);
+void device_monitor_print_summary(void);
+
+#endif
+          </code></pre>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-header">
+          <div>
+            <h3>signal_monitor.c / .h</h3>
+            <p>Surveillance de la puissance du signal</p>
+          </div>
+          <button class="deploy-btn" onclick="toggleCode(this)">
+            Déployer <span>▼</span>
+          </button>
+        </div>
+        <div class="code-content">
+          <div class="code-toolbar">
+            <span>monitor/</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+          </div>
+          <pre><code>signal_monitor.c 
+            #include "signal_monitor.h"
+#include <stdio.h>
+
+void signal_monitor_report(const char *technology, const char *name, int rssi)
+{
+    const char *quality = "Faible";
+    if (rssi >= -55) quality = "Excellent";
+    else if (rssi >= -67) quality = "Bon";
+    else if (rssi >= -75) quality = "Moyen";
+
+    printf("[SIGNAL] %s | %s | %d dBm | %s\n",
+           technology, name, rssi, quality);
+}
+
+
+signal_monitor.h
+
+#ifndef SIGNAL_MONITOR_H
+#define SIGNAL_MONITOR_H
+
+void signal_monitor_report(const char *technology, const char *name, int rssi);
+
+#endif
+          </code></pre>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="pdf-download" style="text-align:center; margin-top:20px;" id="download">
+      <a href="documents/document.pdf" download onclick="DownloadPDF('documents/document.pdf'); return false;">Guide du projet (PDF) — Télécharger</a>
+    </div>
+
+    <div style="text-align:center; margin-top:35px;">
+      <a href="https://github.com/lelackwarren-ui/Wireless-Security-Scanner"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="deploy-btn">
+        Voir le projet sur GitHub
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+    <section class="section section-soft" id="perspectives">
+      <div class="container future-card reveal">
+        <div class="future-copy"><span class="section-kicker">09 — PERSPECTIVES</span><h2>La suite du projet.</h2><p>La version 1 constitue une base fonctionnelle en interface série. Une prochaine étape envisagée est l'ajout d'un affichage embarqué et l'amélioration de la présentation des informations.</p><a href="#contact" class="text-link">Suivre l'évolution du projet <span>→</span></a></div>
+        <div class="future-version"><span class="version-pill">ÉVOLUTION ENVISAGÉE</span><div class="oled-illustration"><div class="oled-screen"><span>W-TECH</span><i>Wi-Fi · BLE</i><b>V2</b></div></div><h3>Version 2</h3><p>Écran OLED I²C 0,96 pouce</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-main">
+      <div><a class="brand footer-brand" href="#accueil"><span class="brand-mark">W</span><span>WScan<span class="brand-dot">.</span></span></a><p>WScan — Wireless Security Scanner<br>W-Tech 💻🌐 · 2026</p></div>
+            <div class="footer-right">
+                <span>Projet de découverte et d'expérimentation des technologies sans fil.</span>
+                <nav class="social-links" aria-label="Réseaux sociaux">
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.93 9.93 0 0 0-8.5 15.13L2.1 21.98l5-1.31A9.96 9.96 0 1 0 12.04 2Zm0 18.18a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-2.97.78.79-2.89-.2-.31A8.18 8.18 0 1 1 12.04 20.18Zm4.49-6.12c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.79.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.74.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579237553534&utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56v1.91h2.77l-.44 2.91h-2.33V22C18.34 21.24 22 17.08 22 12.06Z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/w_tech11/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm8.9 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@cybercenter_11" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 2c.3 2.2 1.5 3.7 3.7 4v3.1a7.8 7.8 0 0 1-3.7-1v6.2A6.3 6.3 0 1 1 10.8 8v3.3a3 3 0 1 0 2.9 3V2h3Z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@w-tech-h6u" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>
+                    </a>
+                </nav>
+                <a class="github-link" href="https://github.com/lelackwarren-ui" target="_blank" rel="noopener noreferrer">Voir le profil GitHub <span>↗</span></a>
+            </div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026. Projet à vocation pédagogique.</span><a href="#top">Retour en haut ↑</a></div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Retour en haut">↑</button>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu de l'image"><button class="lightbox-close" aria-label="Fermer">×</button><img src="" alt="Aperçu agrandi"></div>
+  <script src="script.js"></script>
+</body>
+</html>
