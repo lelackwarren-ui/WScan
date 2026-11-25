@@ -1,0 +1,820 @@
+
+/* =====================================================
+   RESPONSIVE DESIGN — W-TECH WIRELESS SECURITY SCANNER
+   ===================================================== */
+
+
+/* =====================================================
+   1. TABLETTE ET PETITS ORDINATEURS — 1024px
+   ===================================================== */
+
+@media screen and (max-width: 1024px) {
+
+    /* GLOBAL */
+
+    .container {
+        width: calc(100% - 48px);
+    }
+
+    /* HERO */
+
+    .hero-grid {
+        gap: 35px;
+    }
+
+    /* INSTALLATION */
+
+    #installation {
+        padding: 80px 5%;
+    }
+
+    #installation .container {
+        width: 100%;
+    }
+
+    #installation .setup-step {
+        gap: 22px;
+        margin-bottom: 40px;
+    }
+
+    #installation .setup-step-number {
+        min-width: 48px;
+        height: 48px;
+    }
+
+    #installation .setup-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #installation .setup-card {
+        padding: 25px;
+    }
+
+    #installation .setup-code {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    #installation .setup-code pre {
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 13px;
+    }
+
+    #installation .setup-code code {
+        white-space: pre;
+    }
+}
+
+
+/* =====================================================
+   2. PETITS ORDINATEURS — 980px
+   ===================================================== */
+
+@media screen and (max-width: 980px) {
+
+    /* NAVIGATION */
+
+    .nav-links {
+        gap: 14px;
+        font-size: 11px;
+    }
+
+    /* HERO */
+
+    .hero-grid {
+        gap: 35px;
+    }
+
+    /* ÉQUIPEMENTS */
+
+    .equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ARCHITECTURE */
+
+    .module-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =====================================================
+   3. TABLETTE — 768px
+   ===================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* GLOBAL */
+
+    .container {
+        width: min(100% - 36px, 560px);
+    }
+
+    .section {
+        padding: 76px 0;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+        height: 68px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 68px;
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 18px 18px;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 14px 20px rgba(15,23,42,.06);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 11px 8px;
+        font-size: 13px;
+    }
+
+    .nav-links .nav-contact {
+        margin-top: 6px;
+        text-align: center;
+    }
+
+    /* HERO */
+
+    .hero {
+        padding-top: 57px;
+    }
+
+    .hero-grid,
+    .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    h1 {
+        font-size: clamp(40px, 11vw, 55px);
+    }
+
+    .hero-visual {
+        margin: 0 8px;
+    }
+
+    .hero-image-wrap,
+    .hero-image,
+    .hero-placeholder {
+        min-height: 280px;
+        height: 280px;
+    }
+
+    .image-caption {
+        left: -8px;
+    }
+
+    /* INTRODUCTION ET FONCTIONNALITÉS */
+
+    .intro-grid,
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-card {
+        padding: 23px;
+    }
+
+    /* TECHNOLOGIES */
+
+    .tech-strip {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    /* ÉQUIPEMENTS */
+
+    .equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .equipment-image {
+        height: 135px;
+    }
+
+    .equipment-image .image-placeholder {
+        min-height: 135px;
+    }
+
+    /* ARCHITECTURE */
+
+    .architecture-panel {
+        padding: 18px;
+    }
+
+    .module-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .module-card {
+        padding: 13px 10px;
+    }
+
+    /* GALERIE */
+
+    .gallery-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-large {
+        grid-column: 1 / -1;
+    }
+
+    .gallery-item,
+    .gallery-large {
+        height: 185px;
+    }
+
+    /* DÉMONSTRATION */
+
+    .demo-image,
+    .demo-image > img,
+    .demo-image .image-placeholder {
+        min-height: 270px;
+        height: 270px;
+    }
+
+    /* ÉVOLUTION FUTURE */
+
+    .future-card {
+        grid-template-columns: 1fr;
+        padding: 30px 23px;
+        gap: 30px;
+    }
+
+    /* FOOTER */
+
+    .footer-main {
+        flex-direction: column;
+    }
+
+    .footer-right {
+        align-items: flex-start;
+    }
+
+    /* SECTION CODE */
+
+    .code-section {
+        padding: 65px 5%;
+    }
+
+    .code-header h2 {
+        font-size: 28px;
+    }
+
+    .code-card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .deploy-btn {
+        align-self: flex-start;
+    }
+
+    .code-content pre {
+        padding: 15px;
+    }
+
+    /* INSTALLATION */
+
+    #installation {
+        padding: 65px 5%;
+    }
+
+    #installation .section-heading {
+        margin-bottom: 45px;
+        text-align: center;
+    }
+
+    #installation .section-heading h2 {
+        font-size: clamp(26px, 5vw, 34px);
+    }
+
+    #installation .section-heading p {
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 550px;
+        margin: 15px auto 0;
+    }
+
+    /* ÉTAPES */
+
+    #installation .setup-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 35px;
+    }
+
+    #installation .setup-step-number {
+        min-width: 42px;
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    #installation .setup-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    #installation .setup-content h3 {
+        font-size: 20px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+
+    #installation .setup-content > p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* CARTES */
+
+    #installation .setup-card {
+        padding: 22px 18px;
+        margin-top: 20px;
+        border-radius: 12px;
+    }
+
+    #installation .setup-card h4 {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    #installation .setup-card p,
+    #installation .setup-card li {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    #installation .setup-card ol {
+        padding-left: 20px;
+    }
+
+    /* COMMANDES */
+
+    #installation .setup-code {
+        width: 100%;
+        max-width: 100%;
+        margin: 15px 0;
+        overflow: hidden;
+        border-radius: 9px;
+    }
+
+    #installation .setup-code-header {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    #installation .setup-code-header span {
+        font-size: 12px;
+    }
+
+    #installation .setup-copy {
+        font-size: 11px;
+        padding: 7px 10px;
+        flex-shrink: 0;
+    }
+
+    #installation .setup-code pre {
+        padding: 16px;
+        overflow-x: auto;
+        font-size: 12px;
+        line-height: 1.7;
+        max-width: 100%;
+        white-space: pre;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #installation .setup-code code {
+        white-space: pre;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    /* LIENS ET NOTES */
+
+    #installation .setup-link {
+        display: inline-block;
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    #installation .setup-note {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    /* RÉSUMÉ */
+
+    #installation .setup-summary {
+        margin-top: 50px;
+        padding: 25px 20px;
+        border-radius: 14px;
+    }
+
+    #installation .setup-summary h3 {
+        font-size: 21px;
+    }
+
+    #installation .setup-summary > p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    #installation .setup-warning {
+        padding: 14px;
+        font-size: 12px;
+        line-height: 1.7;
+    }
+}
+
+
+/* =====================================================
+   4. PETITS ÉCRANS — 600px
+   ===================================================== */
+
+@media screen and (max-width: 600px) {
+
+    /* SECTION CODE */
+
+    .code-section {
+        padding: 55px 16px;
+    }
+
+    .code-header {
+        margin-bottom: 30px;
+    }
+
+    .code-header h2 {
+        font-size: 25px;
+    }
+
+    .code-header p {
+        font-size: 13px;
+    }
+
+    .code-card-header {
+        padding: 17px;
+    }
+
+    .code-card-header h3 {
+        font-size: 15px;
+    }
+
+    .code-card-header p {
+        font-size: 12px;
+    }
+
+    .deploy-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .code-toolbar {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .copy-btn {
+        padding: 5px 9px;
+        font-size: 11px;
+    }
+
+    .code-content pre {
+        padding: 13px;
+        overflow-x: auto;
+    }
+
+    .code-content code {
+        font-size: 11px;
+    }
+
+    .github-access {
+        padding: 22px 15px;
+    }
+
+    .github-access p {
+        font-size: 13px;
+    }
+
+    .pdf-download a {
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+   5. SMARTPHONE — 480px
+   ===================================================== */
+
+@media screen and (max-width: 480px) {
+
+    /* GLOBAL */
+
+    .section {
+        padding: 60px 0;
+    }
+
+    /* HERO */
+
+    h1 {
+        letter-spacing: -1.5px;
+    }
+
+    /* INSTALLATION */
+
+    #installation {
+        padding: 55px 16px;
+    }
+
+    #installation .setup-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    #installation .section-heading {
+        margin-bottom: 38px;
+    }
+
+    #installation .section-heading h2 {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+
+    #installation .section-heading p {
+        font-size: 13px;
+    }
+
+    /* ÉTAPES */
+
+    #installation .setup-step {
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    #installation .setup-step-number {
+        width: 34px;
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+    }
+
+    #installation .setup-content h3 {
+        font-size: 17px;
+    }
+
+    #installation .setup-content > p {
+        font-size: 13px;
+    }
+
+    /* CARTES */
+
+    #installation .setup-card {
+        padding: 17px 13px;
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+
+    #installation .setup-card h4 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    #installation .setup-card p,
+    #installation .setup-card li {
+        font-size: 12px;
+    }
+
+    #installation .setup-card ol {
+        padding-left: 18px;
+    }
+
+    #installation .setup-card li {
+        padding-left: 2px;
+        margin-bottom: 7px;
+    }
+
+    /* COMMANDES */
+
+    #installation .setup-code-header {
+        padding: 9px 10px;
+    }
+
+    #installation .setup-code-header span {
+        font-size: 10px;
+    }
+
+    #installation .setup-copy {
+        padding: 6px 9px;
+        font-size: 10px;
+    }
+
+    #installation .setup-code pre {
+        padding: 13px 11px;
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+    /* LIENS */
+
+    #installation .setup-link {
+        font-size: 12px;
+    }
+
+    /* RÉSUMÉ */
+
+    #installation .setup-summary {
+        padding: 20px 14px;
+        margin-top: 40px;
+    }
+
+    #installation .setup-summary h3 {
+        font-size: 19px;
+    }
+
+    #installation .setup-warning {
+        padding: 12px;
+        font-size: 11px;
+    }
+}
+
+
+/* =====================================================
+   6. SMARTPHONE COMPACT — 420px
+   ===================================================== */
+
+@media screen and (max-width: 420px) {
+
+    /* GLOBAL */
+
+    .container {
+        width: calc(100% - 30px);
+    }
+
+    /* HERO */
+
+    .hero-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    /* ÉQUIPEMENTS */
+
+    .equipment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .equipment-image {
+        height: 185px;
+    }
+
+    .equipment-image .image-placeholder {
+        min-height: 185px;
+    }
+
+    /* ARCHITECTURE */
+
+    .module-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* GALERIE */
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-large {
+        grid-column: auto;
+    }
+
+    .gallery-item,
+    .gallery-large {
+        height: 205px;
+    }
+
+    /* COMMANDES */
+
+    .command-list div {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    /* FOOTER */
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+
+/* =====================================================
+   7. TRÈS PETITS ÉCRANS — 360px
+   ===================================================== */
+
+@media screen and (max-width: 360px) {
+
+    /* INSTALLATION */
+
+    #installation {
+        padding: 45px 12px;
+    }
+
+    #installation .setup-step {
+        gap: 9px;
+    }
+
+    #installation .setup-step-number {
+        width: 30px;
+        min-width: 30px;
+        height: 30px;
+        font-size: 11px;
+    }
+
+    #installation .setup-content h3 {
+        font-size: 15px;
+    }
+
+    #installation .setup-card {
+        padding: 14px 10px;
+    }
+
+    #installation .setup-code pre {
+        font-size: 10px;
+        padding: 12px 9px;
+    }
+
+    #installation .setup-code-header span {
+        font-size: 9px;
+    }
+
+    #installation .setup-copy {
+        font-size: 9px;
+        padding: 5px 7px;
+    }
+}
+
+
+/* =====================================================
+   8. ACCESSIBILITÉ — RÉDUCTION DES ANIMATIONS
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
