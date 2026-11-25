@@ -194,7 +194,7 @@ h1 span, .section-heading h2 span, .demo-copy h2 span { color: var(--blue); }
 .deploy-btn:hover { background: #1d4ed8; }
 .deploy-btn span { margin-left: 5px; }
 
-.code-content { display: none; background: white; border-top: 1px solid #374151; }
+.code-content { display: none; background: #0b1120; border-top: 1px solid #374151; }
 .code-content.active { display: block; }
 .code-toolbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: #172033; color: #9ca3af; font-size: 13px; }
 
